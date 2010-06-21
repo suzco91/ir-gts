@@ -120,6 +120,8 @@ def namegen(namebytes):
     arr.fromstring(namebytes)
     name = ''
     for i in range(len(arr)):
+        if arr[i] == 0xff:
+            return name
         try:
             name += namelist.get(arr[i])
         except Exception:

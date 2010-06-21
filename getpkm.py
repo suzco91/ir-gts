@@ -68,35 +68,27 @@ def save(path, data):
     f.close()
     print '%s saved successfully' % path
 
-s = platform.system()
-if not cmp(s, 'Darwin') or not cmp(s, 'Linux'):
-    if os.getuid() != 0:
-        args = ['sudo']
-        args.extend(argv)
-        subprocess.call(args)
-        exit(0)
+def getpkm():
+    token = 'c9KcX1Cry3QKS2Ai7yxL6QiQGeBGeQKR'
+    sent = False
+    print 'Ready to receive from NDS'
+    while not sent:
+        sock, req = getReq()
+        a = req.action
 
-pop = uppercase + lowercase + digits
-
-initServ()
-print 'Press ctrl+c to exit'
-while True:
-    sock, req = getReq()
-    a = req.action
-
-    if len(req.getvars) == 1:
-        sendResp(sock, ''.join(sample(pop, 32)))
-    elif a == 'info': sendResp(sock, '\x01\x00')
-    elif a == 'setProfile': sendResp(sock, '\x00' * 8)
-    elif a == 'result': sendResp(sock, '\x05\x00')
-    elif a == 'delete': sendResp(sock, '\x01\x00')
-    elif a == 'search': sendResp(sock, '')
-    elif a == 'post':   # Activated when you deposit to the GTS
-        sendResp(sock, '\x0c\x00') # Prevents the pokemon from leaving the cart, creating a copy instead
-        print 'Receiving Pokemon...'
-        data = req.getvars['data']
-        bytes = b64decode(data.replace('-', '+').replace('_', '/'))
-        decrypt = makepkm(bytes)
-        filename = namegen(decrypt[0x48:0x5e])
-        filename += '.pkm'
-        save(filename, decrypt)
+        if len(req.getvars) == 1: sendResp(sock, token)
+        elif a == 'info': sendResp(sock, '\x01\x00')
+        elif a == 'setProfile': sendResp(sock, '\x00' * 8)
+        elif a == 'result': sendResp(sock, '\x05\x00')
+        elif a == 'delete': sendResp(sock, '\x01\x00')
+        elif a == 'search': sendResp(sock, '')
+        elif a == 'post':
+            sendResp(sock, '\x0c\x00')
+            print 'Receiving Pokemon...'
+            data = req.getvars['data']
+            bytes = b64decode(data.replace('-', '+').replace('_', '/'))
+            decrypt = makepkm(bytes)
+            filename = namegen(decrypt[0x48:0x5e])
+            filename += '.pkm'
+            save(filename, decrypt)
+            sent = True
