@@ -52,3 +52,5 @@ def sendpkm():
         elif a == 'delete':
             sendResp(sock, '\x01\x00')
             sent = True
+
+    print 'Pokemon sent successfully; returning to main menu.'

@@ -92,3 +92,5 @@ def getpkm():
             filename += '.pkm'
             save(filename, decrypt)
             sent = True
+
+    print 'Pokemon sent successfully; returning to main menu.'

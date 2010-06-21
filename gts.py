@@ -17,6 +17,7 @@ from time import sleep
 s = system()
 if s == 'Darwin' or s == 'Linux':
     if getuid() != 0:
+        print 'Program must be run as superuser. Enter your password below.'
         args = ['sudo']
         args.extend(argv)
         call(args)
