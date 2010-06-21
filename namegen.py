@@ -4,8 +4,6 @@ from array import array
 from binascii import hexlify
 
 namelist = {
-    0x00: '',
-    0x01: '',
     0x21: '0',
     0x22: '1',
     0x23: '2',
@@ -115,7 +113,6 @@ namelist = {
     0xdb: '(UP)',
     0xdc: '(DWN)',
     0xdd: 'ZZ',
-    0xff: ''
 }
 
 def namegen(namebytes):
@@ -126,6 +123,5 @@ def namegen(namebytes):
         try:
             name += namelist.get(arr[i])
         except Exception:
-            print 'error generating name: character 0x%x unhandled' % arr[i]
-            exit(1)
+            pass
     return name
