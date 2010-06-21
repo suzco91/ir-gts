@@ -4,6 +4,7 @@ from array import array
 from binascii import hexlify
 
 namelist = {
+    0x00: '',
     0x01: '',
     0x21: '0',
     0x22: '1',
