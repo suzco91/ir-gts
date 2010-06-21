@@ -9,14 +9,14 @@ from pokehaxlib import *
 from getpkm import getpkm
 from sendpkm import sendpkm
 from platform import system
-from os import getuid
 from sys import argv, exit
 from subprocess import call
 from time import sleep
+import os
 
 s = system()
 if s == 'Darwin' or s == 'Linux':
-    if getuid() != 0:
+    if os.getuid() != 0:
         print 'Program must be run as superuser. Enter your password below.'
         args = ['sudo']
         args.extend(argv)
