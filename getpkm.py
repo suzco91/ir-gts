@@ -1,4 +1,11 @@
 #!/usr/bin/python
+
+# A simple script to copy pokemon from retail carts to a computer via GTS.
+# Heavily relies on the sendpkm script and the description of the GTS protocol
+# from http://projectpokemon.org/wiki/GTS_protocol
+#
+# --Infinite Recursion
+
 from pokehaxlib import *
 from pkmlib import decode
 from sys import argv, exit
@@ -9,13 +16,7 @@ from base64 import b64decode
 from binascii import hexlify
 from array import array
 from namegen import namegen
-import os.path
-
-# A simple script to copy pokemon from retail carts to a computer via GTS.
-# Heavily relies on the sendpkm script and the description of the GTS protocol
-# from http://projectpokemon.org/wiki/GTS_protocol
-#
-# --Infinite Recursion
+import os.path, subprocess, platform
 
 def makepkm(bytes):
     ar = array('B') # Byte array to hold encrypted data
@@ -66,6 +67,14 @@ def save(path, data):
     f.write(data)
     f.close()
     print '%s saved successfully' % path
+
+s = platform.system()
+if not cmp(s, 'Darwin') or not cmp(s, 'Linux'):
+    if os.getuid() != 0:
+        args = ['sudo']
+        args.extend(argv)
+        subprocess.call(args)
+        exit(0)
 
 pop = uppercase + lowercase + digits
 
