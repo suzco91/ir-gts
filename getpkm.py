@@ -49,10 +49,10 @@ def save(path, data):
         if os.path.isfile(path):
             print '%s already exists! Delete?' % path
             response = raw_input().lower()
-            if cmp(response, 'y') and cmp(response, 'yes'):
+            if response != 'y' and response != 'yes':
                 print 'Enter new filename: (press enter to cancel save) '
                 path = raw_input()
-                if not cmp(path, ''):
+                if path == '':
                     print 'Not saved'
                     return
                 if not path.strip().lower().endswith('.pkm'):
@@ -61,12 +61,13 @@ def save(path, data):
 
     try:
         f = open(path, 'wb')
-    except Exception:
+    except:
         print 'Cannot write to file %s' % path
+        print 'Returning to main menu'
         return
     f.write(data)
     f.close()
-    print '%s saved successfully' % path
+    print '%s saved successfully; returning to main menu.' % path
 
 def getpkm():
     token = 'c9KcX1Cry3QKS2Ai7yxL6QiQGeBGeQKR'
@@ -92,5 +93,3 @@ def getpkm():
             filename += '.pkm'
             save(filename, decrypt)
             sent = True
-
-    print 'Pokemon sent successfully; returning to main menu.'

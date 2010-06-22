@@ -25,10 +25,10 @@ def sendpkm():
 
     # Adding GTS data to end of file
     if len(pkm) < 236: pkm += '\x00' * (236 - len(pkm))
-    bin += pkm[8:10] # id
-    if ord(pkm[64]) & 4: bin += '\x03' # Gender
-    else: bin += chr((ord(pkm[64]) & 2) + 1)
-    bin += pkm[140] # Level
+    bin += pkm[0x08:0x0a] # id
+    if ord(pkm[0x40]) & 0x04: bin += '\x03' # Gender
+    else: bin += chr((ord(pkm[0x40]) & 2) + 1)
+    bin += pkm[0x8c] # Level
     bin += '\x01\x00\x03\x00\x00\x00\x00\x00' # Requesting bulba, either, any
     bin += '\x00' * 20 # Timestamps and PID
     bin += pkm[0x68:0x78] # OT Name
