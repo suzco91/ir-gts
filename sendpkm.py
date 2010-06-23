@@ -10,8 +10,10 @@ def sendpkm():
 
     print 'Note: you must exit the GTS before sending a pkm'
     print 'Enter the path or drag the pkm file here'
+
+    path = raw_input().strip()
     if system() != 'Windows':
-        path = raw_input().strip().replace('\\', '')
+        path = path.replace('\\', '')
 
     if path.lower().endswith('.pkm'):
         pkm = open(path, 'rb').read()
