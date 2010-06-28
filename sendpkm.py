@@ -48,7 +48,9 @@ def sendpkm():
         a = req.action
         if len(req.getvars) == 1:
             sendResp(sock, token)
-        elif a == 'info': sendResp(sock, '\x01\x00')
+        elif a == 'info':
+            sendResp(sock, '\x01\x00')
+            print 'Connection Established.'
         elif a == 'setProfile': sendResp(sock, '\x00' * 8)
         elif a == 'post': sendResp(sock, '\x0c\x00')
         elif a == 'search': sendResp(sock, '')
