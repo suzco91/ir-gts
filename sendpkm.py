@@ -37,8 +37,8 @@ def sendpkm():
     bin += '\x00' * 20 # Timestamps and PID
     bin += pkm[0x68:0x78] # OT Name
     bin += pkm[0x0c:0x0e] # OT ID
-    bin += '\x00\x00' # Country, City
-    bin += '\x00' * 4 # Unknown
+    bin += '\xDB\x02' # Country, City
+    bin += '\x46\x00\x07\x02' # Sprite, Exchanged (?), Version, Lang
 
     sent = False
     delete = False
