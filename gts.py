@@ -4,6 +4,8 @@
 # retail cart and a PC. Credit goes to LordLandon and his sendpkm script, as
 # well as the description of the GTS protocol from
 # http://projectpokemon.org/wiki/GTS_protocol
+#
+# - Infinite Recursion
 
 from pokehaxlib import *
 from getpkm import getpkm
@@ -14,6 +16,7 @@ from subprocess import call
 from time import sleep
 import os
 
+print 'IR-GTS, rev. 14'
 s = system()
 if s == 'Darwin' or s == 'Linux':
     if os.getuid() != 0:
