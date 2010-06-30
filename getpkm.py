@@ -43,11 +43,11 @@ def makepkm(bytes):
 
 def save(path, data):
     saved = False
-    folder = 'Pokemon' + os.sep
 
     while not saved:
+        fullpath = os.path.normpath('Pokemon' + os.sep + path)
         saved = True
-        if os.path.isfile(folder + path):
+        if os.path.isfile(fullpath)
             print '%s already exists! Delete?' % path
             response = raw_input().lower()
             if response != 'y' and response != 'yes':
@@ -61,7 +61,7 @@ def save(path, data):
                 saved = False
 
     try:
-        f = open(folder + path, 'wb')
+        f = open(fullpath, 'wb')
     except:
         print 'Cannot write to file %s' % path
         print 'Returning to main menu'

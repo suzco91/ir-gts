@@ -4,6 +4,7 @@ from pokehaxlib import *
 from pkmlib import encode, decode
 from sys import argv, exit
 from platform import system
+import os.path
 
 def sendpkm():
     token = 'c9KcX1Cry3QKS2Ai7yxL6QiQGeBGeQKR'
@@ -11,7 +12,8 @@ def sendpkm():
     print 'Note: you must exit the GTS before sending a pkm'
     print 'Enter the path or drag the pkm file here'
 
-    path = raw_input().strip().replace('\\\\', '\\').replace('//', '/')
+    path = raw_input().strip()
+    path = os.path.normpath(path)
     if system() != 'Windows':
         path = path.replace('\\', '')
 
