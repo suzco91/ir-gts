@@ -61,4 +61,4 @@ def sendpkm():
             sendResp(sock, '\x01\x00')
             sent = True
 
-    print 'Pokemon sent successfully; returning to main menu.'
+    print 'Pokemon sent successfully.',

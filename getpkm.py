@@ -54,7 +54,7 @@ def save(path, data):
                 print 'Enter new filename: (press enter to cancel save) '
                 path = raw_input()
                 if path == '':
-                    print 'Not saved. Returning to main menu.'
+                    print 'Not saved.',
                     return
                 if not path.strip().lower().endswith('.pkm'):
                     path += '.pkm'
@@ -64,11 +64,10 @@ def save(path, data):
         f = open(fullpath, 'wb')
     except:
         print 'Cannot write to file %s' % path
-        print 'Returning to main menu'
         return
     f.write(data)
     f.close()
-    print '%s saved successfully; returning to main menu.' % path
+    print '%s saved successfully.' % path,
 
 def getpkm():
     token = 'c9KcX1Cry3QKS2Ai7yxL6QiQGeBGeQKR'

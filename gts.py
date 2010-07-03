@@ -16,7 +16,7 @@ from subprocess import call
 from time import sleep
 import os
 
-print 'IR-GTS, rev. 16'
+print 'IR-GTS, rev. 17'
 s = system()
 if s == 'Darwin' or s == 'Linux':
     if os.getuid() != 0:
@@ -35,11 +35,21 @@ done = False
 while not done:
     print 'Choose an option:'
     print 's - send pkm to game', 'r - receive pkm from game', 'q - quit'
+    print 'm - receive multiple pkms from game'
     option = raw_input().strip().lower()
 
     if option.startswith('s'): sendpkm()
     elif option.startswith('r'): getpkm()
+    elif option.startswith('m'):
+        print 'Press ctrl + c to return to main menu'
+        while True:
+            try: getpkm()
+            except KeyboardInterrupt: break
     elif option.startswith('q'):
         print 'Quitting program'
         done = True
-    else: print 'Invalid option, try again'
+    else:
+        print 'Invalid option, try again'
+        continue
+
+    print 'Returning to main menu'
