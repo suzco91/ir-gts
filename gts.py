@@ -16,7 +16,7 @@ from subprocess import call
 from time import sleep
 import os
 
-print 'IR-GTS, rev. 17'
+print 'IR-GTS, rev. 18'
 s = system()
 if s == 'Darwin' or s == 'Linux':
     if os.getuid() != 0:
@@ -34,8 +34,8 @@ sleep(1)
 done = False
 while not done:
     print 'Choose an option:'
-    print 's - send pkm to game', 'r - receive pkm from game', 'q - quit'
-    print 'm - receive multiple pkms from game'
+    print 's - send pkm to game', 'r - receive pkm from game'
+    print 'm - receive multiple pkms from game', 'q - quit'
     option = raw_input().strip().lower()
 
     if option.startswith('s'): sendpkm()
