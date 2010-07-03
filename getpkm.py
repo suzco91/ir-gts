@@ -47,7 +47,7 @@ def save(path, data):
     while not saved:
         fullpath = os.path.normpath('Pokemon' + os.sep + path)
         saved = True
-        if os.path.isfile(fullpath)
+        if os.path.isfile(fullpath):
             print '%s already exists! Delete?' % path
             response = raw_input().lower()
             if response != 'y' and response != 'yes':

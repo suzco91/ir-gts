@@ -16,7 +16,7 @@ from subprocess import call
 from time import sleep
 import os
 
-print 'IR-GTS, rev. 15'
+print 'IR-GTS, rev. 16'
 s = system()
 if s == 'Darwin' or s == 'Linux':
     if os.getuid() != 0:
