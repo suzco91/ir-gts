@@ -30,7 +30,10 @@ def sendpkm():
         return
 
     # Adding GTS data to end of file
-    if len(pkm) < 236: pkm += '\x00' * (236 - len(pkm))
+    if len(pkm) != 236:
+        print 'Invalid filesize. Note: Only party (i.e. not PC-boxed)',
+        print 'Pokemon can be sent'
+        return
     bin += pkm[0x08:0x0a] # id
     if ord(pkm[0x40]) & 0x04: bin += '\x03' # Gender
     else: bin += chr((ord(pkm[0x40]) & 2) + 1)
