@@ -18,11 +18,13 @@ def sendpkm():
         path = path.replace('\\', '')
 
     if path.lower().endswith('.pkm'):
-        pkm = open(path, 'rb').read()
+        with open(path, 'rb') as f:
+            pkm = f.read()
         print 'Encoding!'
         bin = encode(pkm)
     elif path.lower().endswith('.bin'):
-        bin = open(path, 'rb').read()
+        with open(path, 'rb') as f:
+            bin = f.read()
         print 'Decoding!'
         pkm = decode(bin)
     else:

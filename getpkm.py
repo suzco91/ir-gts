@@ -16,6 +16,7 @@ from base64 import b64decode
 from binascii import hexlify
 from array import array
 from namegen import namegen
+from stats import statread
 import os.path, subprocess, platform
 
 def makepkm(bytes):
@@ -60,13 +61,9 @@ def save(path, data):
                     path += '.pkm'
                 saved = False
 
-    try:
-        f = open(fullpath, 'wb')
-    except:
-        print 'Cannot write to file %s' % path
-        return
-    f.write(data)
-    f.close()
+    with open(fullpath, 'wb') as f:
+        f.write(data)
+
     print '%s saved successfully.' % path,
 
 def getpkm():
@@ -94,4 +91,5 @@ def getpkm():
             filename = namegen(decrypt[0x48:0x5e])
             filename += '.pkm'
             save(filename, decrypt)
+            statread(decrypt)
             sent = True
