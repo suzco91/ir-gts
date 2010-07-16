@@ -7,14 +7,15 @@ def statread(pkm):
 
     pid = p[0x00] + (p[0x01] << 8) + (p[0x02] << 16) + (p[0x03] << 24)
     nickname = namegen(pkm[0x48:0x5e])
+    lv = p[0x8c]
+    nat = nature.get(pid % 25)
+    spec = species.get((p[0x09] << 8) + p[0x08])
+    abil = ability.get(p[0x15])
     if p[0x40] & 4:
         gender = '(Genderless)'
     elif p[0x40] & 2:
         gender = '(Female)'
     else: gender = '(Male)'
-    nat = nature.get(pid % 25)
-    spec = species.get((p[0x09] << 8) + p[0x08])
-    abil = ability.get(p[0x15])
     otname = namegen(pkm[0x68:0x78])
     otid = (p[0x0d] << 8) + p[0x0c]
     secid = (p[0x0f] << 8) + p[0x0e]
@@ -28,7 +29,7 @@ def statread(pkm):
     else: shiny = ''
 
     s = '%s:%s\n    ' % (nickname, shiny)
-    s += '%s %s with %s %s\n\n    ' % (nat, spec, abil, gender)
+    s += 'Lv %d %s %s with %s %s\n\n    ' % (lv, nat, spec, abil, gender)
     s += 'OT: %s,  ID: %05d,  Secret ID: %05d\n    ' % (otname, otid, secid)
     s += 'Holding: %s,  Happiness: %d\n\n    ' % (held, happy)
     s += 'Attacks: %-12s %-12s\n             %-12s %-12s\n\n    ' % atk
