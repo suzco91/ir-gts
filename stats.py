@@ -28,14 +28,13 @@ def statread(pkm):
     else: shiny = ''
 
     s = '%s:%s\n    ' % (nickname, shiny)
-    s += '%s %s with %s %s\n    ' % (nat, spec, abil, gender)
-    s += 'OT: %s, ID: %05d, Secret ID: %05d\n    ' % (otname, otid, secid)
-    s += 'IVs: HP  %02d, Atk  %02d, Def  %02d, Spe  %02d, SpA  %02d, \
-SpD  %02d\n    ' % ivs
-    s += 'EVs: HP %03d, Atk %03d, Def %03d, Spe %03d, SpA %03d, SpD %03d, \
-Total %03d\n    ' % evs
-    s += 'Holding: %s, Happiness: %d\n    ' % (held, happy)
+    s += '%s %s with %s %s\n\n    ' % (nat, spec, abil, gender)
+    s += 'OT: %s,  ID: %05d,  Secret ID: %05d\n    ' % (otname, otid, secid)
+    s += 'Holding: %s,  Happiness: %d\n\n    ' % (held, happy)
     s += 'Attacks: %-12s %-12s\n             %-12s %-12s\n\n' % atk
+    s += 'IVs: HP %3d, Atk %3d, Def %3d, Spe %3d, SpA %3d, SpD %3d\n    ' % ivs
+    s += 'EVs: HP %3d, Atk %3d, Def %3d, Spe %3d, SpA %3d, SpD %3d, \
+Total %d\n\n    ' % evs
     s += '=' * 80 + '\n\n'
 
     with open('pokemon.txt', 'a') as f:
