@@ -2,7 +2,7 @@
 
 = Infinite Recursion's GTS Script (IR-GTS) =
 
-IR-GTS is a Python script that allows you to transfer Pokemon to and from retail Nintendo DS cartridges. It works for all Generation-IV Pokemon games (Diamond, Pearl, Platinum, HeartGold and SoulSilver). Most of the credit goes to LordLandon for his SendPKM script, as well as the description of the GTS protocol at [http://projectpokemon.org/wiki/GTS_protocol Project Pokemon].
+IR-GTS is a Python script that allows you to transfer Pokemon to and from retail Nintendo DS cartridges. It works for all Generation-IV Pokemon games (Diamond, Pearl, Platinum, !HeartGold and !SoulSilver). Most of the credit goes to !LordLandon for his SendPKM script, as well as the description of the GTS protocol at [http://projectpokemon.org/wiki/GTS_protocol Project Pokemon].
 
 IR-GTS should be platform-independent, and has been tested on Windows and Mac OS X.
 
@@ -17,7 +17,7 @@ IR-GTS should be platform-independent, and has been tested on Windows and Mac OS
 First, launch the 'gts.py' file, either by double-clicking or from a command prompt. This will give you an IP address to use for your DS' DNS Settings (available from the network configuration screen). After you've changed the DNS accordingly, choose an option from the main menu by typing a letter and pressing (Enter):
 
 ==== Send a Pokemon to the DS game (s) ====
-This works in exactly the same way as LordLandon's SendPKM script (in fact, it's almost entirely the same code). When prompted, type in the file path to the PKM file you want to send (e.g. 'C:\Users\InfiniteRecursion\MAWILE.pkm'). You should also be able to drag the file into the prompt window, and it will automatically enter the path for you. Press (Enter), and then enter the GTS in-game when prompted. After a short time, the Pokemon will appear on the DS, and be placed in either an empty spot in your party or the first available PC box.
+This works in exactly the same way as !LordLandon's SendPKM script (in fact, it's almost entirely the same code). When prompted, type in the file path to the PKM file you want to send (e.g. 'C:\Users\!InfiniteRecursion\MAWILE.pkm'). You should also be able to drag the file into the prompt window, and it will automatically enter the path for you. Press (Enter), and then enter the GTS in-game when prompted. After a short time, the Pokemon will appear on the DS, and be placed in either an empty spot in your party or the first available PC box.
 
 Sending more than one at a time isn't currently possible, which means that you have to exit and re-enter the GTS to send another.
 
