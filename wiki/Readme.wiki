@@ -32,5 +32,5 @@ This works precisely the same way as above, except it won't dump you back to the
 == Contact ==
 If you run into any problems, please let me know at trocaire (at) minorchaos (dot) net. When the window closes without warning, it usually means it's encountered an error - if possible, I ask that you try running the program from a command prompt and copy/paste the entire output, so I can know exactly what happened. Otherwise, please let me know which function you were attempting, and after which point the program died.
 
-Enjoy!
+Enjoy!<br />
 -Infinite Recursion
