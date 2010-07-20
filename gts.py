@@ -20,10 +20,9 @@ print 'IR-GTS, v0.31'
 s = system()
 if s == 'Darwin' or s == 'Linux':
     if os.getuid() != 0:
-        print 'Program must be run as superuser. Enter your password below.'
-        args = ['sudo']
-        args.extend(argv)
-        call(args)
+        print 'Program must be run as superuser. Enter your password below',
+        print 'if prompted.'
+        os.system('sudo ' + argv[0])
         exit(0)
 
 token = 'c9KcX1Cry3QKS2Ai7yxL6QiQGeBGeQKR' # pulled from the actual GTS server
@@ -32,7 +31,7 @@ initServ()
 sleep(1)
 
 done = False
-while not done:
+while True:
     print 'Choose an option:'
     print 's - send pkm to game', 'r - receive pkm from game'
     print 'm - receive multiple pkms from game', 'q - quit'
@@ -47,7 +46,7 @@ while not done:
             except KeyboardInterrupt: break
     elif option.startswith('q'):
         print 'Quitting program'
-        done = True
+        break
     else:
         print 'Invalid option, try again'
         continue
