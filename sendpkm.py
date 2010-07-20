@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
 from pokehaxlib import *
-from pkmlib import encode, decode
+from pkmlib import encode
+from boxtoparty import makeparty
 from sys import argv, exit
 from platform import system
 import os.path
@@ -20,22 +21,23 @@ def sendpkm():
     if path.lower().endswith('.pkm'):
         with open(path, 'rb') as f:
             pkm = f.read()
+
+        # Adding extra 100 bytes of party data
+        if len(pkm) != 236 and len(pkm) != 136:
+            print 'Invalid filesize.'
+            return
+        if len(pkm) == 136:
+            print 'PC-Boxed Pokemon! Adding party data...',
+            pkm = makeparty(pkm)
+            print 'done.'
+
         print 'Encoding!'
         bin = encode(pkm)
-    elif path.lower().endswith('.bin'):
-        with open(path, 'rb') as f:
-            bin = f.read()
-        print 'Decoding!'
-        pkm = decode(bin)
     else:
-        print 'Filename must end in either .bin or .pkm'
+        print 'Filename must end in .pkm'
         return
 
     # Adding GTS data to end of file
-    if len(pkm) != 236:
-        print 'Invalid filesize. Note: Only party (i.e. not PC-boxed)',
-        print 'Pokemon can be sent'
-        return
     bin += pkm[0x08:0x0a] # id
     if ord(pkm[0x40]) & 0x04: bin += '\x03' # Gender
     else: bin += chr((ord(pkm[0x40]) & 2) + 1)

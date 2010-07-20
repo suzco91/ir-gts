@@ -38,7 +38,7 @@ def statread(pkm):
 Total %d\n\n' % evs
     s += '=' * 80 + '\n\n'
 
-    with open('pokemon.txt', 'a') as f:
+    with open('statlog.txt', 'a') as f:
         f.write(s)
 
 def ivcheck(b):
