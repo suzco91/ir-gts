@@ -19,10 +19,11 @@ def statread(pkm):
     otname = namegen(pkm[0x68:0x78])
     otid = (p[0x0d] << 8) + p[0x0c]
     secid = (p[0x0f] << 8) + p[0x0e]
+    held = items.get((p[0x0b] << 8) + p[0x0a])
     ivs = ivcheck(p[0x38:0x3c])
     evs = evcheck(p[0x18:0x1e])
     atk = attackcheck(p[0x28:0x30])
-    held = items.get((p[0x0b] << 8) + p[0x0a])
+    hidden = hiddenpower(ivs)
     happy = p[0x14]
     shiny = shinycheck(pid, otid, secid)
     if shiny: shiny = ' Shiny!'
@@ -31,7 +32,8 @@ def statread(pkm):
     s = '%s:%s\n    ' % (nickname, shiny)
     s += 'Lv %d %s %s with %s %s\n\n    ' % (lv, nat, spec, abil, gender)
     s += 'OT: %s,  ID: %05d,  Secret ID: %05d\n    ' % (otname, otid, secid)
-    s += 'Holding: %s,  Happiness: %d\n\n    ' % (held, happy)
+    s += 'Holding: %s,  Happiness: %d\n    ' % (held, happy)
+    s += 'Hidden Power: %s-type, %d Base Power\n\n    ' % hidden
     s += 'Attacks: %-12s %-12s\n             %-12s %-12s\n\n    ' % atk
     s += 'IVs: HP %3d, Atk %3d, Def %3d, Spe %3d, SpA %3d, SpD %3d\n    ' % ivs
     s += 'EVs: HP %3d, Atk %3d, Def %3d, Spe %3d, SpA %3d, SpD %3d, \
@@ -74,6 +76,19 @@ def shinycheck(pid, otid, secid):
     ids = otid ^ secid
     pids = pida ^ pidb
     return (ids ^ pids) < 8
+
+def hiddenpower(ivs):
+    t = 0
+    p = 0
+    for i in range(6):
+        t += (ivs[i] % 2) * (2 ** i)
+        m = ivs[i] % 4
+        if m == 2 or m == 3:
+            p += 2 ** i
+
+    t = int((t * 15) / 63)
+    p = int((p * 40) / 63) + 30
+    return (hptype.get(t), p)
 
 species = {
     1: 'Bulbasaur',
@@ -1733,4 +1748,23 @@ items = {
      0x0216: 'Red Orb',
      0x0217: 'Blue Orb',
      0x0218: 'Enigma Stone'
+}
+
+hptype = {
+    0: 'Fighting',
+    1: 'Flying',
+    2: 'Poison',
+    3: 'Ground',
+    4: 'Rock',
+    5: 'Bug',
+    6: 'Ghost',
+    7: 'Steel',
+    8: 'Fire',
+    9: 'Water',
+    10: 'Grass',
+    11: 'Electric',
+    12: 'Psychic',
+    13: 'Ice',
+    14: 'Dragon',
+    15: 'Dark'
 }
