@@ -3,6 +3,7 @@
 from pokehaxlib import *
 from pkmlib import encode
 from boxtoparty import makeparty
+from gbatonds import makends
 from sys import argv, exit
 from platform import system
 import os.path
@@ -30,6 +31,19 @@ def sendpkm():
             print 'PC-Boxed Pokemon! Adding party data...',
             pkm = makeparty(pkm)
             print 'done.'
+
+        print 'Encoding!'
+        bin = encode(pkm)
+    elif path.lower().endswith('.pkm'):
+        print 'Converting GBA file to NDS format...',
+        with open(path, 'rb') as f:
+            pkm = f.read()
+
+        if len(pkm) != 80 and len(pkm) != 100:
+            print 'Invalid filesize.'
+            return
+        pkm = makends(pkm)
+        print 'done.'
 
         print 'Encoding!'
         bin = encode(pkm)

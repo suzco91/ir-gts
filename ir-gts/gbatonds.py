@@ -2,6 +2,7 @@ import namegen
 import stats
 from array import array
 from datetime import date
+from boxtoparty import makeparty
 
 def makends(gba):
     # Deconstructing GBA .3gpkm file
@@ -87,7 +88,7 @@ def makends(gba):
 
     chksm = getsum(pkm)
     pkm = pid + '\x00\x00' + chksm + pkm
-    return pkm
+    return makeparty(pkm)
 
 def convertname(n):
     bytes = array('B')
