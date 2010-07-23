@@ -34,7 +34,7 @@ def sendpkm():
 
         print 'Encoding!'
         bin = encode(pkm)
-    elif path.lower().endswith('.pkm'):
+    elif path.lower().endswith('.3gpkm'):
         print 'Converting GBA file to NDS format...',
         with open(path, 'rb') as f:
             pkm = f.read()
@@ -48,7 +48,7 @@ def sendpkm():
         print 'Encoding!'
         bin = encode(pkm)
     else:
-        print 'Filename must end in .pkm'
+        print 'Filename must end in .pkm or .3gpkm'
         return
 
     # Adding GTS data to end of file
