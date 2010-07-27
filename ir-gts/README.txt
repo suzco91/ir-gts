@@ -51,9 +51,10 @@ something goes wrong. On your computer, it will automatically try to save the
 file as [nickname].pkm within the Pokemon directory. If the file already exists,
 it prompts for a new name.
 
-As of Revision 24, this will now create (or add to) a pokemon.txt file with the
+As of Version 0.30, this will now create (or add to) a statlog.txt file with the
 stats of the pokemon you send to your computer. Nature, Ability, Shininess, OT
-ID and Secret ID, IVs, EVs, and Happiness are all recorded.
+ID and Secret ID, IVs, EVs, Level, Attacks, Hidden Power type and base power,
+Held Item, Gender, and Happiness are all recorded.
 
 
 'm' - Receive multiple Pokemon from the DS game. This works precisely the same
