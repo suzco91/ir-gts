@@ -7,17 +7,15 @@
 #
 # - Infinite Recursion
 
-from aux.pokehaxlib import *
+from aux import gtsvar
+from aux.pokehaxlib import initServ
 from aux.getpkm import getpkm
 from aux.sendpkm import sendpkm
 from platform import system
 from sys import argv, exit
-from subprocess import call
 from time import sleep
 import os
 
-if len(argv) > 1 and argv[1] == 'root':
-    print 'IR-GTS, v0.41'
 s = system()
 if s == 'Darwin' or s == 'Linux':
     if os.getuid() != 0:
@@ -26,7 +24,7 @@ if s == 'Darwin' or s == 'Linux':
         os.system('sudo ' + argv[0] + ' root')
         exit(0)
 
-token = 'c9KcX1Cry3QKS2Ai7yxL6QiQGeBGeQKR' # pulled from the actual GTS server
+print gtsvar.version
 
 initServ()
 sleep(1)
