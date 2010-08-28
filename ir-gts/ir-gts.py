@@ -7,9 +7,9 @@
 #
 # - Infinite Recursion
 
-from pokehaxlib import *
-from getpkm import getpkm
-from sendpkm import sendpkm
+from aux.pokehaxlib import *
+from aux.getpkm import getpkm
+from aux.sendpkm import sendpkm
 from platform import system
 from sys import argv, exit
 from subprocess import call

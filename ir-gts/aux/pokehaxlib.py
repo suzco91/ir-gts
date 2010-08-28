@@ -81,7 +81,7 @@ def dnsspoof():
     rr=s.recv(512)
     if "gamestats2" in rr: rr=rr[:-4]+me
     dnsserv.sendto(rr, r[1])
-    
+
 serv=None
 log=None
 def initServ(logfile=None):
@@ -91,7 +91,7 @@ def initServ(logfile=None):
   serv.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
   serv.bind(("0.0.0.0",80))
   serv.listen(5)
-  
+
   if logfile: log=open(logfile, 'w')
 
 def getReq():
