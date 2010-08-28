@@ -16,13 +16,14 @@ from subprocess import call
 from time import sleep
 import os
 
-print 'IR-GTS, v0.40'
+if len(argv) > 1 and argv[1] == 'root':
+    print 'IR-GTS, v0.41'
 s = system()
 if s == 'Darwin' or s == 'Linux':
     if os.getuid() != 0:
         print 'Program must be run as superuser. Enter your password below',
         print 'if prompted.'
-        os.system('sudo ' + argv[0])
+        os.system('sudo ' + argv[0] + ' root')
         exit(0)
 
 token = 'c9KcX1Cry3QKS2Ai7yxL6QiQGeBGeQKR' # pulled from the actual GTS server
