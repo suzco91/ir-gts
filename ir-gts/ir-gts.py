@@ -7,10 +7,10 @@
 #
 # - Infinite Recursion
 
-from aux import gtsvar
-from aux.pokehaxlib import initServ
-from aux.getpkm import getpkm
-from aux.sendpkm import sendpkm
+from src import gtsvar
+from src.pokehaxlib import initServ
+from src.getpkm import getpkm
+from src.sendpkm import sendpkm
 from platform import system
 from sys import argv, exit
 from time import sleep

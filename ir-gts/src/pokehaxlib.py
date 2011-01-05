@@ -67,7 +67,7 @@ class Response:
     return all
 
 def dnsspoof():
-  s=socket.socket(); s.connect(("bash.org",80));
+  s=socket.socket(); s.connect(("minorchaos.net",80));
   me="".join(chr(int(x)) for x in s.getsockname()[0].split("."))
   print "Please set your DS's DNS server to",s.getsockname()[0]
   dnsserv=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
