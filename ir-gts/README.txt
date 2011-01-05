@@ -20,7 +20,7 @@ Administrator access to your computer
 
 
 How to:
-First, launch the 'gts.py' file, either by double-clicking or from a command
+First, launch the 'ir-gts.py' file, either by double-clicking or from a command
 prompt. This will give you an IP address to use for your DS' DNS Settings
 (available from the network configuration screen). After you've changed the
 DNS accordingly, choose an option from the main menu by typing a letter and
