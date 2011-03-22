@@ -11,7 +11,6 @@ from pkmlib import decode
 from sys import argv, exit
 from base64 import urlsafe_b64decode, urlsafe_b64encode
 from array import array
-from namegen import namegen
 from stats import statread
 import os.path, subprocess, platform, hashlib, gtsvar
 

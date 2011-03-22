@@ -3,16 +3,16 @@
 from pokehaxlib import *
 from pkmlib import encode
 from boxtoparty import makeparty
-from gbatonds import makends
+#from gbatonds import makends
 from sys import argv, exit
 from platform import system
 from base64 import urlsafe_b64encode
-from datetime import date, time
 import os.path, gtsvar, hashlib
 
 def sendpkm():
 
     print 'Note: you must exit the GTS before sending a pkm'
+    print '4th Gen Pokemon files are currently unsupported.'
     print 'Enter the path or drag the pkm file here'
 
     path = raw_input().strip()
@@ -35,21 +35,26 @@ def sendpkm():
 
         print 'Encoding!'
         bin = encode(pkm)
-    elif path.lower().endswith('.3gpkm'):
-        print 'Converting GBA file to NDS format...',
-        with open(path, 'rb') as f:
-            pkm = f.read()
 
-        if len(pkm) != 80 and len(pkm) != 100:
-            print 'Invalid filesize.'
-            return
-        pkm = makends(pkm)
-        print 'done.'
+###
+# Support for .3gpkm files. Currently unfinished.
+###
 
-        print 'Encoding!'
-        bin = encode(pkm)
+#   elif path.lower().endswith('.3gpkm'):
+#       print 'Converting GBA file to NDS format...',
+#       with open(path, 'rb') as f:
+#           pkm = f.read()
+#
+#       if len(pkm) != 80 and len(pkm) != 100:
+#           print 'Invalid filesize.'
+#           return
+#       pkm = makends(pkm)
+#       print 'done.'
+#
+#       print 'Encoding!'
+#       bin = encode(pkm)
     else:
-        print 'Filename must end in .pkm or .3gpkm'
+        print 'Filename must end in .pkm'
         return
 
     # Adding GTS data to end of file
