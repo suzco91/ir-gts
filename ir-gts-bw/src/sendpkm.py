@@ -53,6 +53,11 @@ def sendpkm():
 #
 #       print 'Encoding!'
 #       bin = encode(pkm)
+
+###
+#
+###
+
     else:
         print 'Filename must end in .pkm'
         return
@@ -97,7 +102,6 @@ def sendpkm():
 
         m = hashlib.sha1()
         m.update(gtsvar.salt + urlsafe_b64encode(response) + gtsvar.salt)
-        print 'Response length: ' + str(len(response))
         response += m.hexdigest()
         sendResp(sock, response)
 
