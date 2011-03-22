@@ -6,10 +6,11 @@ from boxtoparty import makeparty
 from gbatonds import makends
 from sys import argv, exit
 from platform import system
-import os.path
+from base64 import urlsafe_b64encode
+from datetime import date, time
+import os.path, gtsvar, hashlib
 
 def sendpkm():
-    token = 'c9KcX1Cry3QKS2Ai7yxL6QiQGeBGeQKR'
 
     print 'Note: you must exit the GTS before sending a pkm'
     print 'Enter the path or drag the pkm file here'
@@ -24,7 +25,7 @@ def sendpkm():
             pkm = f.read()
 
         # Adding extra 100 bytes of party data
-        if len(pkm) != 236 and len(pkm) != 136:
+        if len(pkm) != 220 and len(pkm) != 136:
             print 'Invalid filesize.'
             return
         if len(pkm) == 136:
@@ -52,34 +53,47 @@ def sendpkm():
         return
 
     # Adding GTS data to end of file
+    bin += '\x00' * 16
     bin += pkm[0x08:0x0a] # id
     if ord(pkm[0x40]) & 0x04: bin += '\x03' # Gender
     else: bin += chr((ord(pkm[0x40]) & 2) + 1)
     bin += pkm[0x8c] # Level
     bin += '\x01\x00\x03\x00\x00\x00\x00\x00' # Requesting bulba, either, any
-    bin += '\x00' * 20 # Timestamps and PID
-    bin += pkm[0x68:0x78] # OT Name
+    bin += '\xdb\x07\x03\x0a\x00\x00\x00\x00' # Date deposited (10 Mar 2011)
+    bin += '\xdb\x07\x03\x16\x01\x30\x00\x00' # Date traded (?)
+    bin += pkm[0x00:0x04] # PID
     bin += pkm[0x0c:0x0e] # OT ID
+    bin += pkm[0x0e:0x10] # OT Secret ID
+    bin += pkm[0x68:0x78] # OT Name
     bin += '\xDB\x02' # Country, City
-    bin += '\x46\x00\x07\x02' # Sprite, Exchanged (?), Version, Lang
+    bin += '\x46\x01\x15\x02' # Sprite, Exchanged (?), Version, Lang
+    bin += '\x01\x00' # Unknown
 
     sent = False
-    delete = False
+    response = ''
+
     print 'Ready to send; you can now enter the GTS...'
     while not sent:
         sock, req = getReq()
         a = req.action
         if len(req.getvars) == 1:
-            sendResp(sock, token)
+            sendResp(sock, gtsvar.token)
+            continue
         elif a == 'info':
-            sendResp(sock, '\x01\x00')
+            response = '\x01\x00'
             print 'Connection Established.'
-        elif a == 'setProfile': sendResp(sock, '\x00' * 8)
-        elif a == 'post': sendResp(sock, '\x0c\x00')
-        elif a == 'search': sendResp(sock, '')
-        elif a == 'result': sendResp(sock, bin)
+        elif a == 'setProfile': response = '\x00' * 8
+        elif a == 'post': response = '\x0c\x00'
+        elif a == 'search': response = '\x01\x00'
+        elif a == 'result': response = bin
         elif a == 'delete':
-            sendResp(sock, '\x01\x00')
+            response = '\x01\x00'
             sent = True
+
+        m = hashlib.sha1()
+        m.update(gtsvar.salt + urlsafe_b64encode(response) + gtsvar.salt)
+        print 'Response length: ' + str(len(response))
+        response += m.hexdigest()
+        sendResp(sock, response)
 
     print 'Pokemon sent successfully.',

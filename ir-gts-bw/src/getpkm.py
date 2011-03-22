@@ -9,36 +9,18 @@
 from pokehaxlib import *
 from pkmlib import decode
 from sys import argv, exit
-from string import uppercase, lowercase, digits
-from random import sample
-from time import sleep
-from base64 import b64decode, urlsafe_b64encode
-from binascii import hexlify
+from base64 import urlsafe_b64decode, urlsafe_b64encode
 from array import array
 from namegen import namegen
 from stats import statread
-import os.path, subprocess, platform, hashlib
+import os.path, subprocess, platform, hashlib, gtsvar
 
 def makepkm(bytes):
     ar = array('B') # Byte array to hold encrypted data
     ar.fromstring(bytes)
 
-    # checksum is first four bytes of data, xor'd with 0x4a3b2c1d
-    chksm = (eval('0x' + hexlify(ar[0:4]))) ^ 0x4a3b2c1d
-
-    bin = ar[4:len(ar)] # Byte array for decrypt operations
-    pkm = array('B')    # ...and one for the output file
-
-    # Running decryption algorithm
-    GRNG = chksm | (chksm << 16)
-    for i in range(len(bin)):
-        GRNG = (GRNG * 0x45 + 0x1111) & 0x7fffffff
-        keybyte = (GRNG >> 16) & 0xff
-        pkm.append((bin[i] ^ keybyte) & 0xff)
-
-    pkm = pkm[4:len(pkm)]
-    pkm = pkm[0:236].tostring()
-    pkm = decode(pkm)
+    ar = ar[12:232].tostring()
+    pkm = decode(ar)
 
     return pkm
 
@@ -67,19 +49,15 @@ def save(path, data):
     print '%s saved successfully.' % path,
 
 def getpkm():
-    token = 'sIkSIgb1tMbBFtqAPnFyu0MeR8ZE7JB9'
     sent = False
     response = ''
-    salt = 'HZEdGCzcGGLvguqUEKQN'
     print 'Ready to receive from NDS'
     while not sent:
         sock, req = getReq()
         a = req.action
-        print req
-        print 'Action: ' + req.action
 
         if len(req.getvars) == 1:
-            sendResp(sock, token)
+            sendResp(sock, gtsvar.token)
             continue
         elif a == 'info':
             response = '\x01\x00'
@@ -87,21 +65,27 @@ def getpkm():
         elif a == 'setProfile': response = '\x00' * 8
         elif a == 'result': response = '\x05\x00'
         elif a == 'delete': response = '\x01\x00'
-        elif a == 'search': response = ''
+        elif a == 'search': response = '\x01\x00'
         elif a == 'post':
             response = '\x0c\x00'
             print 'Receiving Pokemon...'
             data = req.getvars['data']
-            bytes = b64decode(data.replace('-', '+').replace('_', '/'))
+            bytes = urlsafe_b64decode(data)
             decrypt = makepkm(bytes)
-            filename = namegen(decrypt[0x48:0x5e])
+            filename = ''
+            for i in decrypt[0x48:0x5e]:
+                if i == '\xff':
+                    break
+                if i != '\x00':
+                    filename += i
+#           filename = namegen(decrypt[0x48:0x5e])
             filename += '.pkm'
+            filename = filename.decode('utf-8')
             save(filename, decrypt)
             statread(decrypt)
             sent = True
 
         m = hashlib.sha1()
-        m.update(salt + urlsafe_b64encode(response) + salt)
-        print 'Hex Digest: ' + m.hexdigest()
+        m.update(gtsvar.salt + urlsafe_b64encode(response) + gtsvar.salt)
         response += m.hexdigest()
         sendResp(sock, response)

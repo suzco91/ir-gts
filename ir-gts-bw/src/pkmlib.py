@@ -28,7 +28,8 @@ def encode(pkm):
     rand=makerand(shifted[0])
     for i in range(67, len(shifted)): shifted[i]^=rand()
   return struct.pack("IHH"+"H"*(len(pkm)/2-4), *shifted)
-  
+
+
 def decode(bin):
   shifted=list(struct.unpack("IHH"+"H"*(len(bin)/2-4), bin))
   rand=makerand(shifted[2])

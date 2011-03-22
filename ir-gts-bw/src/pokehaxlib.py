@@ -116,7 +116,6 @@ def sendResp(sock, data):
   if log: log.write(str(resp)+"\ndone---done\n")
   sock.send(str(resp))
   sock.shutdown(2)
-  print resp
   return
 
 def respFromServ(req):
