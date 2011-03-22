@@ -1,15 +1,15 @@
-Infinite Recursion's GTS Script (IR-GTS)
+Infinite Recursion's GTS Script for Pokemon Black/White (IR-GTS-BW)
 
 
 IR-GTS is a Python script that allows you to transfer Pokemon to and from
-retail Nintendo DS cartridges. It works for all Generation-IV Pokemon games
-(Diamond, Pearl, Platinum, HeartGold and SoulSilver). Most of the credit goes
-to LordLandon for his SendPKM script, as well as the description of the GTS
-protocol from http://projectpokemon.org/wiki/GTS_protocol.
+retail Nintendo DS cartridges. IR-GTS-BW has been updated to work with
+the new Generation V games (Black & White) Most of the credit goes
+to LordLandon for his SendPKM script, as well as the rest of the dedicated
+chaps at ProjectPokemon, without whom this project would be impossible.
 
 
-IR-GTS should be platform-independent, and has been tested on Windows and Mac
-OS X.
+IR-GTS should be platform-independent, and has been tested on Windows, Linux,
+and Mac OS X.
 
 
 Requirements:
@@ -18,9 +18,8 @@ DS Pokemon game
 Wireless network
 Administrator access to your computer
 
-
 How to:
-First, launch the 'ir-gts.py' file, either by double-clicking or from a command
+First, launch the 'ir-gts-bw.py' file, either by double-clicking or from a command
 prompt. This will give you an IP address to use for your DS' DNS Settings
 (available from the network configuration screen). After you've changed the
 DNS accordingly, choose an option from the main menu by typing a letter and
