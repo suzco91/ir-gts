@@ -72,14 +72,18 @@ def getpkm():
             bytes = urlsafe_b64decode(data)
             decrypt = makepkm(bytes)
             filename = ''
-            for i in decrypt[0x48:0x5e]:
-                if i == '\xff':
-                    break
-                if i != '\x00':
-                    filename += i
-#           filename = namegen(decrypt[0x48:0x5e])
+            if decrypt[0x49] != '\x00':
+                pid = 0
+                for i in xrange(0, 4):
+                    pid += ord(decrypt[i]) << (i * 8)
+                filename = str(pid)
+            else:
+                for i in decrypt[0x48:0x5e]:
+                    if i == '\xff':
+                        break
+                    if i != '\x00':
+                        filename += i
             filename += '.pkm'
-            filename = filename.decode('utf-8')
             save(filename, decrypt)
             statread(decrypt)
             sent = True
