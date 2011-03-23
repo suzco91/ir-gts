@@ -1,5 +1,5 @@
 #summary Common errors/problems encountered when running IR-GTS.
 
-  [*]Invalid File Size: Make sure the file you're sending is either 136, 220 (B/W), or 236 (DPPTHGSS) bytes. 236-byte files are for GenIV, and won't work with B/W just yet.
-  [*]"Socket Error Errno 10013 An attempt was made to access a socket in a way forbidden by it's access permissions": I believe this means that another program is using the necessary ports - I know I've seen Skype and Steam cause this error.
-  [*]"Communication Error. Please turn off the power": If you're connecting to Black/White, this error will come up if you use the version of IR-GTS for Gen IV. Note that IR-GTS-BW is a separate release for Black/White compatibility.
+  * Invalid File Size: Make sure the file you're sending is either 136, 220 (B/W), or 236 (DPPTHGSS) bytes. 236-byte files are for GenIV, and won't work with B/W just yet.
+  * "Socket Error Errno 10013 An attempt was made to access a socket in a way forbidden by it's access permissions": I believe this means that another program is using the necessary ports - I know I've seen Skype and Steam cause this error.
+  * "Communication Error. Please turn off the power": If you're connecting to Black/White, this error will come up if you use the version of IR-GTS for Gen IV. Note that IR-GTS-BW is a separate release for Black/White compatibility.
