@@ -20,6 +20,10 @@ def sendpkm():
     if system() != 'Windows':
         path = path.replace('\\', '')
 
+    if path.startswith('"') or path.startswith("'"):
+        path = path[1:]
+    if path.endswith('"') or path.endswith("'"):
+        path = path[:-1]
     if path.lower().endswith('.pkm'):
         with open(path, 'rb') as f:
             pkm = f.read()

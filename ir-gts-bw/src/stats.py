@@ -7,9 +7,12 @@ def statread(pkm):
 
     pid = p[0x00] + (p[0x01] << 8) + (p[0x02] << 16) + (p[0x03] << 24)
     nickname = ''
-    for i in pkm[0x48:0x5e]:
-        if i == '\xff': break
-        if i != '\x00': nickname += i
+    if p[0x49] != 0:
+        nickname = str(pid)
+    else:
+        for i in pkm[0x48:0x5e]:
+            if i == '\xff': break
+            if i != '\x00': nickname += i
     lv = p[0x8c]
     nat = nature.get(pid % 25)
     spec = species.get((p[0x09] << 8) + p[0x08])
@@ -20,9 +23,12 @@ def statread(pkm):
         gender = '(Female)'
     else: gender = '(Male)'
     otname = ''
-    for i in pkm[0x68:0x78]:
-        if i == '\xff': break
-        if i != '\x00': otname += i
+    if p[0x69] != 0:
+        otname = 'TRAINER'
+    else:
+        for i in pkm[0x68:0x78]:
+            if i == '\xff': break
+            if i != '\x00': otname += i
     otid = (p[0x0d] << 8) + p[0x0c]
     secid = (p[0x0f] << 8) + p[0x0e]
     held = items.get((p[0x0b] << 8) + p[0x0a])
