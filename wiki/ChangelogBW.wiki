@@ -1,0 +1,13 @@
+#summary Changes between versions of IR-GTS-BW
+
+==v0.03 (Latest)==
+Changes to statlog.txt:
+-Fixed incorrect natures being reported
+-Reordered IV/EV output to the standard HP/Atk/Def/SpA/SpD/Spe order
+
+===v0.02===
+-Added placeholder in lieu of proper Japanese nickname/OT support.
+-Strips quotes from the end of filenames, making drag&drop easier.
+
+===v0.01===
+Initial release.
