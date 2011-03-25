@@ -4,4 +4,3 @@
   * Converting .3gpkm with foreign names will set a nickname flag.
 
 == IR-GTS-BW ==
-  * Incorrect nature in statlog.txt. Will be fixed in v0.03.
