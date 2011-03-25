@@ -13,7 +13,7 @@ OS X.
 
 
 Requirements:
-Python 2.6 (Available from http://www.python.org)
+Python 2.7 (Available from http://www.python.org)
 DS Pokemon game
 Wireless network
 Administrator access to your computer
