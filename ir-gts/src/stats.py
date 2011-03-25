@@ -35,8 +35,8 @@ def statread(pkm):
     s += 'Holding: %s,  Happiness: %d\n    ' % (held, happy)
     s += 'Hidden Power: %s-type, %d Base Power\n\n    ' % hidden
     s += 'Attacks: %-12s %-12s\n             %-12s %-12s\n\n    ' % atk
-    s += 'IVs: HP %3d, Atk %3d, Def %3d, Spe %3d, SpA %3d, SpD %3d\n    ' % ivs
-    s += 'EVs: HP %3d, Atk %3d, Def %3d, Spe %3d, SpA %3d, SpD %3d, \
+    s += 'IVs: HP %3d, Atk %3d, Def %3d, SpA %3d, SpD %3d, Spe %3d\n    ' % ivs
+    s += 'EVs: HP %3d, Atk %3d, Def %3d, SpA %3d, SpD %3d, Spe %3d, \
 Total %d\n\n' % evs
     s += '=' * 80 + '\n\n'
 
@@ -51,7 +51,7 @@ def ivcheck(b):
     spe = (ivs & 0x000f8000) >> 15
     spa = (ivs & 0x01f00000) >> 20
     spd = (ivs & 0x3e000000) >> 25
-    return (hp, atk, df, spe, spa, spd)
+    return (hp, atk, df, spa, spd, spe)
 
 def evcheck(b):
     hp = b[0]
@@ -61,7 +61,7 @@ def evcheck(b):
     spa = b[4]
     spd = b[5]
     total = hp + atk + df + spe + spa + spd
-    return (hp, atk, df, spe, spa, spd, total)
+    return (hp, atk, df, spa, spd, spe, total)
 
 def attackcheck(b):
     a1 = attacks.get(b[0] + (b[1] << 8))
