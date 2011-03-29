@@ -7,6 +7,6 @@
   * Error 13275: The Nintendo Wi-Fi Connection is currently experiencing problems due to a high amount of players, or is temporarily down. Please try again later.
 
 
-Several people have been connecting to the actual GTS, despite inputting the DNS settings correctly into the DS. There are several possible causes for this. If (and only if) you are using a USB device to connect your DS to the internet, try setting your computer's DNS to 127.0.0.1. Otherwise, try deleting all other connections in the DS settings, as it may be accessing a different network than the one IR-GTS is running on.
+Several people have been connecting to the actual GTS, despite inputting the DNS settings correctly into the DS. There are several possible causes for this. If (and only if) you are using a USB device to connect your DS to the internet, try setting your computer's DNS to 127.0.0.1 if the adapter is connected to the same computer IR-GTS is running on, or the IP that IR-GTS gives you if not. Otherwise, try deleting all other connections in the DS settings, as it may be accessing a different network than the one IR-GTS is running on.
 
 Per Bond697: "Some ISPs don't allow for the little DNS hijack thing that's used to make the fake GTS work. There's nothing to be done to fix it past trying at a friend's house or public wifi."
