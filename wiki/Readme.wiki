@@ -8,16 +8,16 @@ IR-GTS should be platform-independent, and has been tested on Windows, Linux and
 
 == Requirements ==
   * Python 2.7 (Available from http://www.python.org)
-  * DS Pokemon game
+  * DS Pokemon game, and the proper version of IR-GTS for that game
   * Wireless network
   * Administrator access to your computer
 
 
 == How-To ==
-First, launch the 'ir-gts.py' (ir-gts-bw.py for Black/White) file, either by double-clicking or from a command prompt. This will give you an IP address to use for your DS' DNS Settings (available from the network configuration screen). After you've changed the DNS accordingly, choose an option from the main menu by typing a letter and pressing (Enter):
+First, launch the 'ir-gts.py' (ir-gts-bw.py for Black/White) file, either by double-clicking or from a command prompt. This will give you an IP address to use for your DS' DNS Settings (available from the network configuration screen). After you've changed the Primary DNS accordingly, choose an option from the main menu by typing a letter and pressing (Enter):
 
 ==== Send a Pokemon to the DS game (s) ====
-This works in exactly the same way as !LordLandon's SendPKM script (in fact, it's almost entirely the same code). When prompted, type in the file path to the PKM file you want to send (e.g. 'C:\Users\!InfiniteRecursion\MAWILE.pkm'). You should also be able to drag the file into the prompt window, and it will automatically enter the path for you. Press (Enter), and then enter the GTS in-game when prompted. After a short time, the Pokemon will appear on the DS, and be placed in either an empty spot in your party or the first available PC box.
+This works in exactly the same way as !LordLandon's SendPKM script (in fact, it's almost entirely the same code). When prompted, type in the file path to the PKM file you want to send (e.g. 'C:\Users\!InfiniteRecursion\MAWILE.pkm' or, if it's in the Pokemon directory within the ir-gts folder, simply 'Pokemon\MAWILE.pkm'). You should also be able to drag the file into the prompt window, and it will automatically enter the path for you. Press (Enter), and then enter the GTS in-game when prompted. After a short time, the Pokemon will appear on the DS, and be placed in either an empty spot in your party or the first available PC box.
 
 Sending more than one at a time isn't currently possible, which means that you have to exit and re-enter the GTS to send another.
 
@@ -29,8 +29,16 @@ As of Version 0.30, this will now create (or add to) a statlog.txt file with the
 ==== Receive multiple Pokemon from the DS game (m) ====
 This works precisely the same way as above, except it won't dump you back to the menu after receiving each one. There is no need to exit and re-enter the GTS for this function. Press (Control) + (C) to return to the main menu.
 
-== Contact ==
-If you run into any problems, please let me know at trocaire (at) minorchaos (dot) net. When the window closes without warning, it usually means it's encountered an error - if possible, I ask that you try running the program from a command prompt and copy/paste the entire output, so I can know exactly what happened. Otherwise, please let me know which function you were attempting, and after which point the program died.
+== Support ==
+If you need further help after reading this Readme and the CommonIssues page, feel free to email me at trocaire (at) minorchaos (dot) net. If the window closes without warning, it's probably encountered an error. Try running the program from a Command Prompt, as it won't close the window that way, and you can then view the full error message.
+
+Do not send an email to this GMail address, it will be ignored. Not only does this keep IR-GTS emails in the same place, it also helps ensure that you've read the readme before requesting further support.
+
+When requesting support, make sure you include:
+  * A full description of the problem, including any error messages you receive on either the DS or PC.
+  * The version number that IR-GTS reports
+  * The operating system on your computer
+  * Which function you were attempting (i.e. sending, receiving, or 'didn't get that far'), and at which point it failed.
 
 Enjoy!<br />
 -Infinite Recursion
