@@ -19,6 +19,8 @@ First, launch the 'ir-gts.py' (ir-gts-bw.py for Black/White) file, either by dou
 ==== Send a Pokemon to the DS game (s) ====
 This works in exactly the same way as !LordLandon's SendPKM script (in fact, it's almost entirely the same code). When prompted, type in the file path to the PKM file you want to send (e.g. 'C:\Users\!InfiniteRecursion\MAWILE.pkm' or, if it's in the Pokemon directory within the ir-gts folder, simply 'Pokemon\MAWILE.pkm'). You should also be able to drag the file into the prompt window, and it will automatically enter the path for you. Press (Enter), and then enter the GTS in-game when prompted. After a short time, the Pokemon will appear on the DS, and be placed in either an empty spot in your party or the first available PC box.
 
+NOTE: IR-GTS-BW cannot send 236-byte Gen-IV .pkm files, and 136-byte Gen-IV files (Boxed Pokemon) will have some errors once it gets to your game. Most notably, the nickname and OT name usually appears as '????'
+
 Sending more than one at a time isn't currently possible, which means that you have to exit and re-enter the GTS to send another.
 
 ==== Receive a Pokemon from the DS game (r) ====
