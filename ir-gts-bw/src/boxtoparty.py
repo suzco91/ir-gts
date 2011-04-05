@@ -67,9 +67,9 @@ def __stats(level, species):
 
     atk = __genstat(ivs[1], evs[1], base[1], level, nat[0])
     df = __genstat(ivs[2], evs[2], base[2], level, nat[1])
-    spe = __genstat(ivs[3], evs[3], base[5], level, nat[2])
-    spa = __genstat(ivs[4], evs[4], base[3], level, nat[3])
-    spd = __genstat(ivs[5], evs[5], base[4], level, nat[4])
+    spe = __genstat(ivs[5], evs[5], base[5], level, nat[2])
+    spa = __genstat(ivs[3], evs[3], base[3], level, nat[3])
+    spd = __genstat(ivs[4], evs[4], base[4], level, nat[4])
 
     # Max HP, Curr HP, followed by remainder of the stats
     return hpb + hpa + hpb + hpa + atk + df + spe + spa + spd
