@@ -1,4 +1,5 @@
 #summary General Readme for IR-GTS
+#labels Featured
 
 = Infinite Recursion's GTS Script (IR-GTS) =
 
