@@ -16,6 +16,7 @@ def statread(pkm):
     lv = p[0x8c]
     nat = nature.get(ord(pkm[0x41]))
     spec = species.get((p[0x09] << 8) + p[0x08])
+    dwabil = 'hidden ability ' if p[0x42] == 1 else ''
     abil = ability.get(p[0x15])
     if p[0x40] & 4:
         gender = '(Genderless)'
@@ -42,7 +43,7 @@ def statread(pkm):
     else: shiny = ''
 
     s = '%s:%s\n    ' % (nickname, shiny)
-    s += 'Lv %d %s %s with %s %s\n\n    ' % (lv, nat, spec, abil, gender)
+    s += 'Lv %d %s %s with %s%s %s\n\n    ' % (lv, nat, spec, dwabil, abil, gender)
     s += 'OT: %s,  ID: %05d,  Secret ID: %05d\n    ' % (otname, otid, secid)
     s += 'Holding: %s,  Happiness: %d\n    ' % (held, happy)
     s += 'Hidden Power: %s-type, %d Base Power\n\n    ' % hidden
