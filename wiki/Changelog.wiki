@@ -1,6 +1,9 @@
 #summary Changes between IR-GTS versions
 
-==0.42 (Latest)==
+==0.43 (Latest)==
+Corrected the stats generated via the boxtoparty function.
+
+===0.42===
 Reordered IV/EV output to the standard HP/Atk/Def/SpA/SpD/Spe order. Changed readme to recommend Python v2.7.
 
 ===0.41===
