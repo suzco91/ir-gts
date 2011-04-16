@@ -30,7 +30,7 @@ def sendpkm():
 
         # Adding extra 100 bytes of party data
         if len(pkm) != 220 and len(pkm) != 136:
-            print 'Invalid filesize.'
+            print 'Invalid filesize: %d bytes.' % len(pkm)
             return
         if len(pkm) == 136:
             print 'PC-Boxed Pokemon! Adding party data...',
