@@ -33,15 +33,9 @@ As of Version 0.30, this will now create (or add to) a statlog.txt file with the
 This works precisely the same way as above, except it won't dump you back to the menu after receiving each one. There is no need to exit and re-enter the GTS for this function. Press (Control) + (C) to return to the main menu.
 
 == Support ==
-If you need further help after reading this Readme and the CommonIssues page, feel free to email me at trocaire (at) minorchaos (dot) net. If the window closes without warning, it's probably encountered an error. Try running the program from a Command Prompt, as it won't close the window that way, and you can then view the full error message. See CommandPrompt for instructions.
+If the window closes without warning, it's probably encountered an error. Try running the program from a Command Prompt, as it won't close the window that way, and you can then view the full error message. See CommandPrompt for instructions.
 
-Do not send an email to this GMail address, it will be ignored. Not only does this keep IR-GTS emails in the same place, it also helps ensure that you've read the readme before requesting further support.
-
-When requesting support, make sure you include:
-  * A full description of the problem, including any error messages you receive on either the DS or PC.
-  * The version number that IR-GTS reports
-  * The operating system on your computer
-  * Which function you were attempting (i.e. sending, receiving, or 'didn't get that far'), and at which point it failed.
+NB: I am no longer able to respond to support requests. The program is distributed as-is, and will not change for the foreseeable future.
 
 Enjoy!<br />
 -Infinite Recursion
